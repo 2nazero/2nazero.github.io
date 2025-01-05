@@ -10,30 +10,14 @@
     <style>
       /* General Body Styles */
       body {
-        background-color: #f8f9fa; /* Light Gray Background */
-        color: #333; /* Text Color */
+        background-color: #f8f9fa;
+        color: #333;
         font-family: 'Open Sans', sans-serif;
       }
 
       /* Section Padding */
       section {
         padding: 60px 20px;
-      }
-
-      /* Intro Section */
-      .tm-section-text-container {
-        background-color: transparent;
-        padding: 20px;
-        margin-bottom: 40px;
-        text-align: center;
-      }
-
-      .tm-section-image-container img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 10px;
-        margin: 0 auto;
-        display: block;
       }
 
       /* Section Titles */
@@ -47,35 +31,46 @@
       .tm-section-title-underline {
         width: 50px;
         height: 3px;
-        background-color: #007bff; /* Blue */
+        background-color: #007bff;
         margin: 10px auto;
       }
 
-      /* Portfolio Columns */
-      .tm-section-col {
-        margin-bottom: 40px;
+      /* Social Icons Section */
+      .tm-social-icons {
         text-align: center;
+        margin-bottom: 40px;
       }
 
-      .tm-section-col p {
-        margin-top: 10px;
-        font-size: 1rem;
-        color: #333; /* Text Color */
-      }
-
-      /* Social Icons */
-      .tm-social-icon {
-        color: #007bff; /* Default Icon Color */
-        margin: 10px;
+      .tm-social-icons a {
+        color: #007bff;
+        margin: 0 15px;
         transition: color 0.3s ease;
       }
 
-      .tm-social-icon:hover {
-        color: #0056b3; /* Hover Icon Color */
+      .tm-social-icons a:hover {
+        color: #0056b3;
       }
 
       .fa-3x {
         font-size: 3rem;
+      }
+
+      /* Portfolio Section */
+      .tm-project {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .tm-project img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+
+      .tm-project-title {
+        font-size: 1.25rem;
+        color: #007bff;
+        margin-top: 10px;
       }
 
       /* Footer Styles */
@@ -95,27 +90,14 @@
   </head>
   <body>
     <div>
-      <!-- Logo & Intro Section -->
-      <section id="intro">
+      <!-- Social Icons Section -->
+      <section id="social-icons">
         <div class="container">
-          <h1 class="tm-section-title">Nayoung Lee</h1>
-          <h2 class="tm-section-title" style="font-size: 1.25rem;">Mathematical Data Scientist</h2>
-          <div class="tm-section-text-container">
-            <p>
-              I am currently in my first year of a master's degree in Mathematical Data Science (MDS) at Korea University.
-              I built a mathematical foundation in mathematics during my undergraduate studies, and now focus on applying
-              mathematics to artificial intelligence.
-            </p>
-            <p>
-              I view mathematics as fundamental for understanding and elaborating AI models. I am particularly interested
-              in converting text into geometric images using domain-specific languages.
-            </p>
-            <p>
-              I am fortunate to be advised by Professor Donghun Lee and to be a part of the AIML@K Lab.
-            </p>
-          </div>
-          <div class="tm-section-image-container">
-            <img src="img/pic_-21.jpg" alt="Profile Picture" />
+          <div class="tm-social-icons">
+            <a href="https://github.com/2nazero" target="_blank"><i class="fab fa-github fa-3x"></i></a>
+            <a href="https://www.linkedin.com/in/nayoung-lee-56b485286/" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a>
+            <a href="https://aiml-k.github.io/author/nayoung-lee/" target="_blank"><i class="fas fa-flask fa-3x"></i></a>
+            <a href="files/NayoungLeeCV.pdf" target="_blank" download><i class="fas fa-file-pdf fa-3x"></i></a>
           </div>
         </div>
       </section>
@@ -125,30 +107,27 @@
         <div class="container">
           <h2 class="tm-section-title">Portfolio</h2>
           <hr class="tm-section-title-underline" />
-          <div class="row text-center">
-            <div class="col-md-3 tm-section-col">
-              <a href="https://github.com/2nazero" target="_blank" class="tm-social-icon">
-                <i class="fab fa-github fa-3x"></i>
+          <div class="row">
+            <!-- Project 1 -->
+            <div class="col-md-4 tm-project">
+              <a href="project1.html">
+                <img src="img/project1.jpg" alt="Project 1" />
+                <h3 class="tm-project-title">Project 1: AI Text Analysis</h3>
               </a>
-              <p>GitHub</p>
             </div>
-            <div class="col-md-3 tm-section-col">
-              <a href="https://www.linkedin.com/in/nayoung-lee-56b485286/" target="_blank" class="tm-social-icon">
-                <i class="fab fa-linkedin fa-3x"></i>
+            <!-- Project 2 -->
+            <div class="col-md-4 tm-project">
+              <a href="project2.html">
+                <img src="img/project2.jpg" alt="Project 2" />
+                <h3 class="tm-project-title">Project 2: Graph Neural Networks</h3>
               </a>
-              <p>LinkedIn</p>
             </div>
-            <div class="col-md-3 tm-section-col">
-              <a href="https://aiml-k.github.io/author/nayoung-lee/" target="_blank" class="tm-social-icon">
-                <i class="fas fa-flask fa-3x"></i>
+            <!-- Project 3 -->
+            <div class="col-md-4 tm-project">
+              <a href="project3.html">
+                <img src="img/project3.jpg" alt="Project 3" />
+                <h3 class="tm-project-title">Project 3: Data Visualization</h3>
               </a>
-              <p>Lab Profile</p>
-            </div>
-            <div class="col-md-3 tm-section-col">
-              <a href="files/CV_Nayoung_Lee.pdf" target="_blank" class="tm-social-icon" download>
-                <i class="fas fa-file-pdf fa-3x"></i>
-              </a>
-              <p>Download CV</p>
             </div>
           </div>
         </div>
