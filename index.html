@@ -4,157 +4,196 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nayoung Lee</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@300;400&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" />
+    <!-- FontAwesome (for icons) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-dyHbyrA8X8sh3p1F2HBF3BRkPkBdtC3QuFnRlb3x5oOsXJ7gnCOm9R/AlQ8wBSpi6C6ykIOGmZjX23lshdBfQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-pzjw8f+ua7Kw1TIqjQvT6ogdcA2SeFxhpbziWCnRNpAd1zoxK65lZhD7vtsH0Cxj"
+      crossorigin="anonymous"
+    />
     <style>
       body {
-        margin: 0;
-        font-family: 'Roboto', sans-serif;
-        background-color: #f7f9fc;
+        font-family: 'Open Sans', sans-serif;
+        background-color: #f8f9fa;
         color: #333;
-        overflow-x: hidden;
       }
 
-      /* Fullscreen Intro Section */
-      .intro {
-        height: 100vh;
-        position: relative;
-        background: linear-gradient(to bottom, #2c3e50, #34495e);
-        color: white;
+      .tm-section-logo {
+        padding: 60px 20px;
         text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
+        background-color: #e3f2fd; /* Light Blue */
       }
 
-      .intro img {
+      .tm-section-logo img {
         border-radius: 50%;
-        border: 5px solid #f39c12;
-        width: 250px;
-        height: 250px;
-        object-fit: cover;
-        transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
+        border: 5px solid #007bff;
+        max-width: 200px;
+        margin-top: 20px;
       }
 
-      .intro h1 {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 3.5rem;
+      .tm-section-title {
+        font-size: 2.5rem;
+        color: #007bff;
+        margin-bottom: 20px;
+      }
+
+      .tm-section-description {
+        font-size: 1.2rem;
+        color: #555;
+      }
+
+      .tm-social-icons {
+        text-align: center;
         margin: 20px 0;
       }
 
-      .intro p {
-        font-size: 1.2rem;
-        margin: 0 20px;
+      .tm-social-icons a {
+        color: #007bff;
+        margin: 0 15px;
+        font-size: 2rem;
+        transition: color 0.3s ease;
       }
 
-      /* Sticky Section for Photo Shrink Effect */
-      .sticky-section {
-        position: relative;
-        height: 200vh; /* Allow enough scroll space */
-        background-color: #ecf0f1;
+      .tm-social-icons a:hover {
+        color: #0056b3;
       }
 
-      .sticky-content {
-        position: sticky;
-        top: 10px; /* Sticks to the top */
-        text-align: center;
-      }
-
-      .sticky-content img {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        border: 3px solid #2c3e50;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-      }
-
-      .sticky-content p {
-        margin-top: 20px;
-        font-size: 1rem;
-        color: #333;
-      }
-
-      .portfolio-section {
+      .tm-section-portfolio {
         padding: 60px 20px;
-        background-color: #fff;
+        background-color: #ffffff;
       }
 
-      .portfolio-title {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 2.5rem;
+      .tm-project {
         text-align: center;
-        color: #2c3e50;
         margin-bottom: 40px;
       }
 
-      .portfolio-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
-        margin: 0 auto;
-        max-width: 1200px;
+      .tm-project img {
+        max-width: 100%;
+        border-radius: 10px;
+        transition: transform 0.3s ease-in-out;
       }
 
-      .portfolio-item {
-        background: #f7f9fc;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
+      .tm-project img:hover {
+        transform: scale(1.05);
+      }
+
+      .tm-project-title {
+        font-size: 1.5rem;
+        color: #007bff;
+        margin-top: 15px;
+      }
+
+      .tm-project p {
+        font-size: 1rem;
+        color: #555;
+      }
+
+      footer {
+        background-color: #333;
+        color: #fff;
         text-align: center;
         padding: 20px;
+        margin-top: 40px;
       }
 
-      .portfolio-item h3 {
-        font-size: 1.5rem;
-        color: #2c3e50;
-        margin-bottom: 10px;
-      }
-
-      .portfolio-item p {
-        font-size: 1rem;
-        color: #666;
+      footer a {
+        color: #007bff;
+        text-decoration: none;
       }
     </style>
   </head>
   <body>
-    <!-- Fullscreen Intro -->
-    <section class="intro">
-      <img src="img/pic_-21.jpg" alt="Profile Photo" id="profile-photo" />
-      <h1>Nayoung Lee</h1>
-      <p>Mathematical Data Scientist</p>
-    </section>
+    <div>
+      <!-- Logo & Intro Section -->
+      <section id="intro" class="tm-section-logo">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6">
+              <h1 class="tm-section-title">Nayoung Lee</h1>
+              <p class="tm-section-description">Mathematical Data Scientist</p>
+              <p>
+                I am currently in my first year of a master's degree in Mathematical Data Science (MDS) at Korea University.
+                I built a mathematical foundation in mathematics during my undergraduate studies, and now focus on applying
+                mathematics to artificial intelligence.
+              </p>
+              <p>
+                I am fortunate to be advised by Professor Donghun Lee and to be a part of the AIML@K Lab.
+              </p>
+            </div>
+            <div class="col-md-6 text-center">
+              <!-- Profile Photo -->
+              <img src="img/pic_-21.jpg" alt="Profile Photo" class="img-fluid" />
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <!-- Sticky Section -->
-    <section class="sticky-section">
-      <div class="sticky-content">
-        <img src="img/pic_-21.jpg" alt="Profile Photo Small" id="shrinking-photo" />
-        <p>Scroll down to explore more about my work and passion!</p>
-      </div>
-    </section>
+      <!-- Social Media Section -->
+      <section id="social-media" class="tm-social-icons">
+        <a href="https://github.com/2nazero" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/nayoung-lee-56b485286/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://aiml-k.github.io/author/nayoung-lee/" target="_blank"><i class="fas fa-flask"></i></a>
+        <a href="files/NayoungLeeCV.pdf" target="_blank" download><i class="fas fa-file-pdf"></i></a>
+      </section>
 
-    <!-- Portfolio Section -->
-    <section class="portfolio-section">
-      <h2 class="portfolio-title">Portfolio</h2>
-      <div class="portfolio-grid">
-        <div class="portfolio-item">
-          <h3>DAB Contest</h3>
-          <p>Risk area analysis, optimized routes, and voice guidance in Seoul navigation.</p>
+      <section id="portfolio" class="tm-section-portfolio">
+        <div class="container">
+          <h2 class="tm-section-title">Portfolio</h2>
+          <hr class="tm-section-title-underline" />
+          <div class="row">
+            <!-- Project 1 -->
+            <div class="col-md-4 tm-project">
+              <a href="project_DAB.html">
+                <h3 class="tm-project-title">DAB Contest</h3>
+              </a>
+              <p>Risk area analysis, optimized routes, and voice guidance in Seoul navigation.</p>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="col-md-4 tm-project">
+              <a href="project_AGC.html">
+                <h3 class="tm-project-title">AGC Project</h3>
+              </a>
+              <p>Automated Graph Clustering for large-scale data insights and visualization.</p>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="col-md-4 tm-project">
+              <a href="project_Epoxy.html">
+                <h3 class="tm-project-title">Epoxy Optimization</h3>
+              </a>
+              <p>Epoxy material optimization using AI-driven analysis and simulation tools.</p>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="col-md-4 tm-project">
+              <a href="project_GNN.html">
+                <h3 class="tm-project-title">GNN Research</h3>
+              </a>
+              <p>Graph Neural Networks for robust and interpretable insights in complex systems.</p>
+            </div>
+          </div>
         </div>
-        <div class="portfolio-item">
-          <h3>AGC Project</h3>
-          <p>Automated Graph Clustering for large-scale data insights and visualization.</p>
-        </div>
-        <div class="portfolio-item">
-          <h3>Epoxy Optimization</h3>
-          <p>Epoxy material optimization using AI-driven analysis and simulation tools.</p>
-        </div>
-        <div class="portfolio-item">
-          <h3>GNN Research</h3>
-          <p>Graph Neural Networks for robust and interpretable insights in complex systems.</p>
-        </div>
-      </div>
-    </section>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <p>
+          Copyright &copy; 2025 Nayoung Lee | Powered by 
+          <a href="https://github.com/2nazero">GitHub Pages</a>
+        </p>
+      </footer>
+    </div>
   </body>
 </html>
