@@ -8,72 +8,67 @@
     <link rel="stylesheet" href="css/all.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <style>
-      /* General Body Styles */
       body {
+        font-family: 'Open Sans', sans-serif;
         background-color: #f8f9fa;
         color: #333;
-        font-family: 'Open Sans', sans-serif;
       }
 
-      /* Section Padding */
-      section {
+      .tm-section-logo {
         padding: 60px 20px;
+        text-align: center;
+        background-color: #e3f2fd; /* Light Blue */
       }
 
-      /* Section Titles */
+      .tm-section-logo img {
+        border-radius: 50%;
+        border: 5px solid #007bff;
+        max-width: 200px;
+        margin-top: 20px;
+      }
+
       .tm-section-title {
-        font-size: 2rem;
+        font-size: 2.5rem;
         color: #007bff;
-        text-align: center;
         margin-bottom: 20px;
       }
 
-      .tm-section-title-underline {
-        width: 50px;
-        height: 3px;
-        background-color: #007bff;
-        margin: 10px auto;
+      .tm-section-description {
+        font-size: 1.2rem;
+        color: #555;
       }
 
-      /* Social Icons Section */
-      .tm-social-icons {
+      .tm-section-portfolio {
+        padding: 60px 20px;
+        background-color: #ffffff;
+      }
+
+      .tm-project {
         text-align: center;
         margin-bottom: 40px;
       }
 
-      .tm-social-icons a {
-        color: #007bff;
-        margin: 0 15px;
-        transition: color 0.3s ease;
-      }
-
-      .tm-social-icons a:hover {
-        color: #0056b3;
-      }
-
-      .fa-3x {
-        font-size: 3rem;
-      }
-
-      /* Portfolio Section */
-      .tm-project {
-        text-align: center;
-        margin-bottom: 30px;
-      }
-
       .tm-project img {
         max-width: 100%;
-        height: auto;
         border-radius: 10px;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .tm-project img:hover {
+        transform: scale(1.05);
       }
 
       .tm-project-title {
-        font-size: 1.25rem;
+        font-size: 1.5rem;
         color: #007bff;
-        margin-top: 10px;
+        margin-top: 15px;
       }
 
-      /* Footer Styles */
+      .tm-project p {
+        font-size: 1rem;
+        color: #555;
+      }
+
       footer {
         background-color: #333;
         color: #fff;
@@ -90,44 +85,43 @@
   </head>
   <body>
     <div>
-      <!-- Social Icons Section -->
-      <section id="social-icons">
-        <div class="container">
-          <div class="tm-social-icons">
-            <a href="https://github.com/2nazero" target="_blank"><i class="fab fa-github fa-3x"></i></a>
-            <a href="https://www.linkedin.com/in/nayoung-lee-56b485286/" target="_blank"><i class="fab fa-linkedin fa-3x"></i></a>
-            <a href="https://aiml-k.github.io/author/nayoung-lee/" target="_blank"><i class="fas fa-flask fa-3x"></i></a>
-            <a href="files/NayoungLeeCV.pdf" target="_blank" download><i class="fas fa-file-pdf fa-3x"></i></a>
+      <!-- Logo & Intro Section -->
+      <section id="intro" class="tm-section-logo">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6">
+              <h1 class="tm-section-title">Nayoung Lee</h1>
+              <p class="tm-section-description">Mathematical Data Scientist</p>
+              <p>
+                I am currently in my first year of a master's degree in Mathematical Data Science (MDS) at Korea University.
+                I built a mathematical foundation in mathematics during my undergraduate studies, and now focus on applying
+                mathematics to artificial intelligence.
+              </p>
+              <p>
+                I am fortunate to be advised by Professor Donghun Lee and to be a part of the AIML@K Lab.
+              </p>
+            </div>
+            <div class="col-md-6 text-center">
+              <!-- Profile Photo -->
+              <img src="img/pic_-21.jpg" alt="Profile Photo" class="img-fluid" />
+            </div>
           </div>
         </div>
       </section>
 
       <!-- Portfolio Section -->
-      <section id="portfolio">
+      <section id="portfolio" class="tm-section-portfolio">
         <div class="container">
           <h2 class="tm-section-title">Portfolio</h2>
           <hr class="tm-section-title-underline" />
           <div class="row">
-            <!-- Project 1 -->
+            <!-- 프로젝트 1 -->
             <div class="col-md-4 tm-project">
-              <a href="project1.html">
-                <img src="img/project1.jpg" alt="Project 1" />
-                <h3 class="tm-project-title">Project 1: AI Text Analysis</h3>
+              <a href="project_DAB.html">
+                <img src="img/project_DAB.jpg" alt="DAB Contest" class="img-fluid rounded" />
+                <h3 class="tm-project-title">DAB Contest</h3>
               </a>
-            </div>
-            <!-- Project 2 -->
-            <div class="col-md-4 tm-project">
-              <a href="project2.html">
-                <img src="img/project2.jpg" alt="Project 2" />
-                <h3 class="tm-project-title">Project 2: Graph Neural Networks</h3>
-              </a>
-            </div>
-            <!-- Project 3 -->
-            <div class="col-md-4 tm-project">
-              <a href="project3.html">
-                <img src="img/project3.jpg" alt="Project 3" />
-                <h3 class="tm-project-title">Project 3: Data Visualization</h3>
-              </a>
+              <p>Risk area analysis, optimized routes, and voice guidance in Seoul navigation.</p>
             </div>
           </div>
         </div>
