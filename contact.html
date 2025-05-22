@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Nayoung Lee</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1e40af;
+            --secondary-color: #0ea5e9;
+            --accent-color: #f59e0b;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --success-color: #10b981;
+            --error-color: #ef4444;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            scroll-behavior: smooth;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(30, 64, 175, 0.1);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 6rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        /* Hero Section */
+        .contact-hero {
+            background: linear-gradient(135deg, var(--bg-light) 0%, #e2e8f0 100%);
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .contact-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .contact-hero p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Contact Methods */
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-method {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .contact-method:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-method h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .contact-method p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .contact-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Main Contact Section */
+        .main-contact {
+            background: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-form-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .contact-form-section p {
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-select {
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+        }
+
+        .submit-btn:disabled {
+            background: var(--text-light);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .submit-btn.loading {
+            background: var(--text-light);
+            cursor: not-allowed;
+        }
+
+        .submit-btn.success {
+            background: var(--success-color);
+        }
+
+        /* Contact Info */
+        .contact-info-section h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+
+        .contact-details {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .detail-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .detail-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            min-width: 2rem;
+        }
+
+        .detail-content h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-dark);
+        }
+
+        .detail-content p {
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        /* Social Links */
+        .social-section {
+            margin-top: 2rem;
+        }
+
+        .social-section h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-dark);
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .social-link:hover {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Availability Status */
+        .availability-status {
+            background: linear-gradient(135deg, var(--success-color), #059669);
+            color: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .availability-status.busy {
+            background: linear-gradient(135deg, var(--accent-color), #d97706);
+        }
+
+        .availability-status.unavailable {
+            background: linear-gradient(135deg, var(--error-color), #dc2626);
+        }
+
+        .status-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .status-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .status-description {
+            opacity: 0.9;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--bg-light);
+            padding: 4rem 0;
+        }
+
+        .faq-grid {
+            display: grid;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            background: white;
+            border: none;
+            padding: 1.5rem;
+            width: 100%;
+            text-align: left;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--bg-light);
+        }
+
+        .faq-question.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 200px;
+        }
+
+        .faq-answer p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        /* Form Validation */
+        .form-input.error,
+        .form-textarea.error,
+        .form-select.error {
+            border-color: var(--error-color);
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .success-message {
+            background: var(--success-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .contact-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-methods {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">NL</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="contact-hero">
+            <div class="container">
+                <h1>Let's Connect</h1>
+                <p>[연락처 페이지 소개 메시지를 여기에 작성하세요. 어떤 종류의 문의를 환영하는지, 응답 시간은 어느 정도인지 등]</p>
+                
+                <!-- Quick Contact Methods -->
+                <div class="contact-methods">
+                    <div class="contact-method" onclick="copyToClipboard('[이메일주소]')">
+                        <div class="contact-icon">📧</div>
+                        <h3>Email</h3>
+                        <p>가장 빠른 연락 방법</p>
+                        <a href="mailto:[이메일주소]" class="contact-link">[이메일주소]</a>
+                    </div>
+                    
+                    <div class="contact-method" onclick="window.open('[LinkedIn주소]', '_blank')">
+                        <div class="contact-icon">💼</div>
+                        <h3>LinkedIn</h3>
+                        <p>전문적인 네트워킹</p>
+                        <a href="[LinkedIn주소]" target="_blank" class="contact-link">LinkedIn 프로필</a>
+                    </div>
+                    
+                    <div class="contact-method" onclick="window.open('[GitHub주소]', '_blank')">
+                        <div class="contact-icon">🐙</div>
+                        <h3>GitHub</h3>
+                        <p>코드와 프로젝트</p>
+                        <a href="[GitHub주소]" target="_blank" class="contact-link">GitHub 프로필</a>
+                    </div>
+                    
+                    <div class="contact-method" onclick="copyToClipboard('[전화번호]')">
+                        <div class="contact-icon">📱</div>
+                        <h3>Phone</h3>
+                        <p>긴급한 문의사항</p>
+                        <a href="tel:[전화번호]" class="contact-link">[전화번호]</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Contact Form -->
+        <section class="main-contact section">
+            <div class="container">
+                <div class="contact-grid">
+                    <!-- Contact Form -->
+                    <div class="contact-form-section">
+                        <h2>메시지 보내기</h2>
+                        <p>아래 양식을 통해 문의사항을 보내주세요. 24시간 내에 답변드리겠습니다.</p>
+                        
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="firstName">이름</label>
+                                    <input type="text" id="firstName" name="firstName" class="form-input" required>
+                                    <div class="error-message" id="firstNameError"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="lastName">성</label>
+                                    <input type="text" id="lastName" name="lastName" class="form-input" required>
+                                    <div class="error-message" id="lastNameError"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="email">이메일</label>
+                                    <input type="email" id="email" name="email" class="form-input" required>
+                                    <div class="error-message" id="emailError"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="phone">전화번호 (선택)</label>
+                                    <input type="tel" id="phone" name="phone" class="form-input">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="company">회사/기관 (선택)</label>
+                                <input type="text" id="company" name="company" class="form-input">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="subject">문의 유형</label>
+                                <select id="subject" name="subject" class="form-select" required>
+                                    <option value="">선택해주세요</option>
+                                    <option value="collaboration">협업 제안</option>
+                                    <option value="job">채용 문의</option>
+                                    <option value="consulting">컨설팅 문의</option>
+                                    <option value="speaking">강연 요청</option>
+                                    <option value="mentoring">멘토링 문의</option>
+                                    <option value="other">기타</option>
+                                </select>
+                                <div class="error-message" id="subjectError"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="message">메시지</label>
+                                <textarea id="message" name="message" class="form-textarea" placeholder="자세한 문의 내용을 작성해주세요..." required></textarea>
+                                <div class="error-message" id="messageError"></div>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn" id="submitBtn">
+                                메시지 보내기
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div class="contact-info-section">
+                        <h3>연락처 정보</h3>
+                        
+                        <div class="contact-details">
+                            <div class="detail-item">
+                                <div class="detail-icon">📧</div>
+                                <div class="detail-content">
+                                    <h4>이메일</h4>
+                                    <p>[이메일주소]</p>
+                                </div>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <div class="detail-icon">📱</div>
+                                <div class="detail-content">
+                                    <h4>전화</h4>
+                                    <p>[전화번호]</p>
+                                </div>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <div class="detail-icon">📍</div>
+                                <div class="detail-content">
+                                    <h4>위치</h4>
+                                    <p>[지역/도시]</p>
+                                </div>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <div class="detail-icon">🕐</div>
+                                <div class="detail-content">
+                                    <h4>응답 시간</h4>
+                                    <p>24시간 내 답변</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Social Links -->
+                        <div class="social-section">
+                            <h4>소셜 미디어</h4>
+                            <div class="social-links">
+                                <a href="[LinkedIn주소]" target="_blank" class="social-link">
+                                    <span>💼</span>
+                                    LinkedIn
+                                </a>
+                                <a href="[GitHub주소]" target="_blank" class="social-link">
+                                    <span>🐙</span>
+                                    GitHub
+                                </a>
+                                <a href="[Twitter주소]" target="_blank" class="social-link">
+                                    <span>🐦</span>
+                                    Twitter
+                                </a>
+                                <a href="[Instagram주소]" target="_blank" class="social-link">
+                                    <span>📷</span>
+                                    Instagram
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Availability Status -->
+                        <div class="availability-status">
+                            <div class="status-icon">✅</div>
+                            <div class="status-title">현재 연락 가능</div>
+                            <div class="status-description">[현재 상태에 대한 설명]</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <h2 style="font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 1rem; color: var(--text-dark);">자주 묻는 질문</h2>
+                <p style="text-align: center; color: var(--text-light); margin-bottom: 3rem;">궁금한 점이 있으시면 먼저 아래 FAQ를 확인해보세요</p>
+                
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(0)">
+                            협업 프로젝트는 어떤 형태로 진행되나요?
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>[협업 프로젝트 진행 방식에 대한 설명을 여기에 작성하세요]</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(1)">
+                            컨설팅 서비스의 범위는 어떻게 되나요?
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>[컨설팅 서비스 범위에 대한 설명을 여기에 작성하세요]</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(2)">
+                            응답 시간은 얼마나 걸리나요?
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>[응답 시간에 대한 설명을 여기에 작성하세요]</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(3)">
+                            멘토링은 어떤 방식으로 진행되나요?
+                            <span class="faq-icon">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>[멘토링 진행 방식에 대한 설명을 여기에 작성하세요]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function toggleFAQ(index) {
+            const questions = document.querySelectorAll('.faq-question');
+            const answers = document.querySelectorAll('.faq-answer');
+            
+            // Close all other FAQs
+            questions.forEach((q, i) => {
+                if (i !== index) {
+                    q.classList.remove('active');
+                    answers[i].classList.remove('active');
+                }
+            });
+            
+            // Toggle clicked FAQ
+            questions[index].classList.toggle('active');
+            answers[index].classList.toggle('active');
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Show temporary feedback
+                const originalText = event.target.textContent;
+                event.target.textContent = 'Copied!';
+                setTimeout(() => {
+                    event.target.textContent = originalText;
+                }, 2000);
+            });
+        }
+
+        // Form Validation and Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const form = this;
+            
+            // Clear previous errors
+            clearErrors();
+            
+            // Validate form
+            let isValid = true;
+            
+            const firstName = document.getElementById('firstName');
+            const lastName = document.getElementById('lastName');
+            const email = document.getElementById('email');
+            const subject = document.getElementById('subject');
+            const message = document.getElementById('message');
+            
+            if (!firstName.value.trim()) {
+                showError('firstName', '이름을 입력해주세요');
+                isValid = false;
+            }
+            
+            if (!lastName.value.trim()) {
+                showError('lastName', '성을 입력해주세요');
+                isValid = false;
+            }
+            
+            if (!email.value.trim()) {
+                showError('email', '이메일을 입력해주세요');
+                isValid = false;
+            } else if (!isValidEmail(email.value)) {
+                showError('email', '올바른 이메일 형식을 입력해주세요');
+                isValid = false;
+            }
+            
+            if (!subject.value) {
+                showError('subject', '문의 유형을 선택해주세요');
+                isValid = false;
+            }
+            
+            if (!message.value.trim()) {
+                showError('message', '메시지를 입력해주세요');
+                isValid = false;
+            }
+            
+            if (!isValid) return;
+            
+            // Show loading state
+            submitBtn.textContent = '전송 중...';
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                // Show success state
+                submitBtn.textContent = '전송 완료! ✓';
+                submitBtn.classList.remove('loading');
+                submitBtn.classList.add('success');
+                
+                // Show success message
+                const successMessage = document.createElement('div');
+                successMessage.className = 'success-message';
+                successMessage.textContent = '메시지가 성공적으로 전송되었습니다. 24시간 내에 답변드리겠습니다.';
+                form.insertBefore(successMessage, form.firstChild);
+                
+                // Reset form
+                form.reset();
+                
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    submitBtn.textContent = '메시지 보내기';
+                    submitBtn.classList.remove('success');
+                    submitBtn.disabled = false;
+                    successMessage.remove();
+                }, 3000);
+                
+            }, 2000);
+        });
+
+        function showError(fieldId, message) {
+            const field = document.getElementById(fieldId);
+            const errorElement = document.getElementById(fieldId + 'Error');
+            
+            field.classList.add('error');
+            errorElement.textContent = message;
+        }
+
+        function clearErrors() {
+            const errorElements = document.querySelectorAll('.error-message');
+            const inputElements = document.querySelectorAll('.form-input, .form-textarea, .form-select');
+            
+            errorElements.forEach(el => el.textContent = '');
+            inputElements.forEach(el => el.classList.remove('error'));
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('.nav');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (!nav.contains(event.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

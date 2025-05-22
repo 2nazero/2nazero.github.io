@@ -1,187 +1,649 @@
-
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nayoung Lee</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" />
-    <link rel="stylesheet" href="css/all.min.css" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nayoung Lee - Data Scientist & Researcher</title>
     <style>
-      body {
-        font-family: 'Open Sans', sans-serif;
-        background-color: #f8f9fa;
-        color: #333;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      .tm-section-logo {
-        padding: 60px 20px;
-        text-align: center;
-        background-color: #e3f2fd; /* Light Blue */
-      }
+        :root {
+            --primary-color: #1e40af;
+            --secondary-color: #0ea5e9;
+            --accent-color: #f59e0b;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+        }
 
-      .tm-section-logo img {
-        border-radius: 50%;
-        border: 5px solid #007bff;
-        max-width: 200px;
-        margin-top: 20px;
-      }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            scroll-behavior: smooth;
+        }
 
-      .tm-section-title {
-        font-size: 2.5rem;
-        color: #007bff;
-        margin-bottom: 20px;
-      }
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(30, 64, 175, 0.1);
+        }
 
-      .tm-section-description {
-        font-size: 1.2rem;
-        color: #555;
-      }
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
 
-      .tm-social-icons {
-        text-align: center;
-        margin: 20px 0;
-      }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
 
-      .tm-social-icons a {
-        color: #007bff;
-        margin: 0 15px;
-        font-size: 2rem;
-        transition: color 0.3s ease;
-      }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
 
-      .tm-social-icons a:hover {
-        color: #0056b3;
-      }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
 
-      .tm-section-portfolio {
-        padding: 60px 20px;
-        background-color: #ffffff;
-      }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
 
-      .tm-project {
-        text-align: center;
-        margin-bottom: 40px;
-      }
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            position: relative;
+        }
 
-      .tm-project img {
-        max-width: 100%;
-        border-radius: 10px;
-        transition: transform 0.3s ease-in-out;
-      }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%231e40af" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
 
-      .tm-project img:hover {
-        transform: scale(1.05);
-      }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-      .tm-project-title {
-        font-size: 1.5rem;
-        color: #007bff;
-        margin-top: 15px;
-      }
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.2s;
+        }
 
-      .tm-project p {
-        font-size: 1rem;
-        color: #555;
-      }
+        .hero-content .title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.4s;
+        }
 
-      footer {
-        background-color: #333;
-        color: #fff;
-        text-align: center;
-        padding: 20px;
-        margin-top: 40px;
-      }
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.6s;
+        }
 
-      footer a {
-        color: #007bff;
-        text-decoration: none;
-      }
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.8s;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.3);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Quick Stats */
+        .quick-stats {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 1s;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* Quick About */
+        .quick-about {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .about-text p {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .quick-skills {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            color: var(--text-dark);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Featured Projects */
+        .featured-projects {
+            padding: 5rem 0;
+            background: var(--bg-light);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-header {
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .project-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .project-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+
+        /* Call to Action */
+        .cta-section {
+            padding: 5rem 0;
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-section .cta-button {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .cta-section .cta-button:hover {
+            background: var(--bg-light);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-skills {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-stats {
+                gap: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <div>
-      <!-- Logo & Intro Section -->
-      <section id="intro" class="tm-section-logo">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-6">
-              <h1 class="tm-section-title">Nayoung Lee</h1>
-              <p class="tm-section-description">Mathematical Data Scientist</p>
-              <p>
-                I am currently in my first year of a master's degree in Mathematical Data Science (MDS) at Korea University.
-                I built a mathematical foundation in mathematics during my undergraduate studies, and now focus on applying
-                mathematics to artificial intelligence.
-              </p>
-              <p>
-                I am fortunate to be advised by Professor Donghun Lee and to be a part of the AIML@K Lab.
-              </p>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">NL</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Nayoung Lee</h1>
+            <p class="title">Data Scientist & Researcher</p>
+            <p>[여기에 본인을 한 문장으로 소개하는 임팩트 있는 메시지를 작성하세요]</p>
+            <div class="cta-buttons">
+                <a href="projects.html" class="cta-button">View Projects</a>
+                <a href="about.html" class="cta-button secondary">About Me</a>
+                <a href="files/NayoungLeeCV.pdf" class="cta-button secondary" target="_blank">Download CV</a>
             </div>
-            <div class="col-md-6 text-center">
-              <!-- Profile Photo -->
-              <img src="img/pic_-21.jpg" alt="Profile Photo" class="img-fluid" />
+            
+            <div class="quick-stats">
+                <div class="stat-item">
+                    <span class="stat-number">[숫자]</span>
+                    <span class="stat-label">[성과 지표 1]</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">[숫자]</span>
+                    <span class="stat-label">[성과 지표 2]</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">[숫자]</span>
+                    <span class="stat-label">[성과 지표 3]</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">[숫자]</span>
+                    <span class="stat-label">[성과 지표 4]</span>
+                </div>
             </div>
-          </div>
         </div>
-      </section>
+    </section>
 
-      <!-- Social Media Section -->
-      <section id="social-media" class="tm-social-icons">
-        <a href="https://github.com/2nazero" target="_blank"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/nayoung-lee-56b485286/" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="https://aiml-k.github.io/author/nayoung-lee/" target="_blank"><i class="fas fa-flask"></i></a>
-        <a href="files/NayoungLeeCV.pdf" target="_blank" download><i class="fas fa-file-pdf"></i></a>
-      </section>
-
-      <section id="portfolio" class="tm-section-portfolio">
+    <!-- Quick About -->
+    <section class="quick-about">
         <div class="container">
-          <h2 class="tm-section-title">Portfolio</h2>
-          <hr class="tm-section-title-underline" />
-          <div class="row">
-            <!-- 프로젝트 1: DAB Contest -->
-            <div class="col-md-4 tm-project">
-              <a href="project_DAB.html">
-                <h3 class="tm-project-title">DAB Contest</h3>
-              </a>
-              <p>Risk area analysis, optimized routes, and voice guidance in Seoul navigation.</p>
+            <h2 class="section-title">About</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3>[본인의 전문성을 한 줄로 요약]</h3>
+                    <p>[첫 번째 문단: 본인의 배경과 현재 하고 있는 일을 간략하게 소개]</p>
+                    <p>[두 번째 문단: 본인만의 강점이나 관심 분야를 설명]</p>
+                    <a href="about.html" class="project-link">더 자세히 보기 →</a>
+                </div>
+                
+                <div class="quick-skills">
+                    <div class="skill-item">[핵심 스킬 1]</div>
+                    <div class="skill-item">[핵심 스킬 2]</div>
+                    <div class="skill-item">[핵심 스킬 3]</div>
+                    <div class="skill-item">[핵심 스킬 4]</div>
+                </div>
             </div>
-      
-            <!-- 프로젝트 2: AGC -->
-            <div class="col-md-4 tm-project">
-              <a href="project_AGC.html">
-                <h3 class="tm-project-title">AGC Project</h3>
-              </a>
-              <p>Automated Graph Clustering for large-scale data insights and visualization.</p>
-            </div>
-      
-            <!-- 프로젝트 3: Epoxy -->
-            <div class="col-md-4 tm-project">
-              <a href="project_Epoxy.html">
-                <h3 class="tm-project-title">Epoxy Optimization</h3>
-              </a>
-              <p>Epoxy material optimization using AI-driven analysis and simulation tools.</p>
-            </div>
-      
-            <!-- 프로젝트 4: GNN -->
-            <div class="col-md-4 tm-project">
-              <a href="project_GNN.html">
-                <h3 class="tm-project-title">GNN Research</h3>
-              </a>
-              <p>Graph Neural Networks for robust and interpretable insights in complex systems.</p>
-            </div>
-          </div>
         </div>
-      </section>
+    </section>
 
-      <!-- Footer -->
-      <footer>
-        <p>
-          Copyright &copy; 2025 Nayoung Lee | Powered by 
-          <a href="https://github.com/2nazero">GitHub Pages</a>
-        </p>
-      </footer>
-    </div>
-  </body>
+    <!-- Featured Projects -->
+    <section class="featured-projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">Graph Neural Networks</div>
+                    <div class="project-content">
+                        <h3 class="project-title">GNN 연구 프로젝트</h3>
+                        <p class="project-description">
+                            [GNN 프로젝트에 대한 간략한 설명을 2-3줄로 작성하세요]
+                        </p>
+                        <a href="projects/gnn.html" class="project-link">자세히 보기 →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">AGC System</div>
+                    <div class="project-content">
+                        <h3 class="project-title">AGC 시스템 개발</h3>
+                        <p class="project-description">
+                            [AGC 프로젝트에 대한 간략한 설명을 2-3줄로 작성하세요]
+                        </p>
+                        <a href="projects/agc.html" class="project-link">자세히 보기 →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">Epoxy Materials</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Epoxy 소재 연구</h3>
+                        <p class="project-description">
+                            [Epoxy 프로젝트에 대한 간략한 설명을 2-3줄로 작성하세요]
+                        </p>
+                        <a href="projects/epoxy.html" class="project-link">자세히 보기 →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">DAB Broadcasting</div>
+                    <div class="project-content">
+                        <h3 class="project-title">DAB 시스템 구축</h3>
+                        <p class="project-description">
+                            [DAB 프로젝트에 대한 간략한 설명을 2-3줄로 작성하세요]
+                        </p>
+                        <a href="projects/dab.html" class="project-link">자세히 보기 →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="projects.html" class="cta-button">모든 프로젝트 보기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>함께 일하고 싶으신가요?</h2>
+            <p>[협업이나 채용 관련 메시지를 여기에 작성하세요]</p>
+            <a href="contact.html" class="cta-button">연락하기</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="mailto:[이메일주소]">Email</a>
+                <a href="[LinkedIn주소]" target="_blank">LinkedIn</a>
+                <a href="[GitHub주소]" target="_blank">GitHub</a>
+                <a href="files/NayoungLeeCV.pdf" target="_blank">CV</a>
+            </div>
+            <p>&copy; 2025 Nayoung Lee. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('.nav');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (!nav.contains(event.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
 </html>

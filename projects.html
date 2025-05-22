@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Nayoung Lee</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1e40af;
+            --secondary-color: #0ea5e9;
+            --accent-color: #f59e0b;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --info-color: #8b5cf6;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            scroll-behavior: smooth;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(30, 64, 175, 0.1);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 6rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        /* Hero Section */
+        .projects-hero {
+            background: linear-gradient(135deg, var(--bg-light) 0%, #e2e8f0 100%);
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .projects-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .projects-hero p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            background: white;
+            color: var(--text-dark);
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Project Stats */
+        .project-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0 4rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* Projects Grid */
+        .projects-section {
+            background: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-header {
+            height: 180px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .project-header.research {
+            background: linear-gradient(135deg, var(--info-color), #a855f7);
+        }
+
+        .project-header.engineering {
+            background: linear-gradient(135deg, var(--success-color), #059669);
+        }
+
+        .project-header.analysis {
+            background: linear-gradient(135deg, var(--warning-color), #d97706);
+        }
+
+        .project-icon {
+            font-size: 4rem;
+            opacity: 0.9;
+        }
+
+        .project-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--text-dark);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .project-category {
+            background: var(--bg-light);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .project-date {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .project-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-highlights {
+            background: #f0f9ff;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .project-highlights h5 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-highlights p {
+            font-size: 0.875rem;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .project-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+
+        .project-duration {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        /* Featured Projects */
+        .featured-section {
+            background: var(--bg-light);
+            padding: 5rem 0;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .featured-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .featured-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .featured-header {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .featured-icon {
+            font-size: 5rem;
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .featured-content {
+            padding: 3rem;
+        }
+
+        .featured-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .featured-description {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            font-size: 1.125rem;
+        }
+
+        .featured-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .featured-stat {
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: 8px;
+        }
+
+        .featured-stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .featured-stat-label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .contact-cta h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .contact-cta p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary-color);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: var(--bg-light);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .projects-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-stats {
+                gap: 2rem;
+            }
+
+            .filter-buttons {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+
+            .featured-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">NL</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="projects-hero">
+            <div class="container">
+                <h1>My Projects</h1>
+                <p>[프로젝트 소개 메시지를 여기에 작성하세요. 어떤 종류의 프로젝트들을 해왔는지, 주요 관심 분야는 무엇인지 등]</p>
+                
+                <!-- Filter Buttons -->
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterProjects('all')">All Projects</button>
+                    <button class="filter-btn" onclick="filterProjects('research')">Research</button>
+                    <button class="filter-btn" onclick="filterProjects('engineering')">Engineering</button>
+                    <button class="filter-btn" onclick="filterProjects('analysis')">Data Analysis</button>
+                </div>
+
+                <!-- Project Stats -->
+                <div class="project-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">[숫자]</span>
+                        <span class="stat-label">Total Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">[숫자]</span>
+                        <span class="stat-label">Research Papers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">[숫자]</span>
+                        <span class="stat-label">Technologies Used</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">[숫자]</span>
+                        <span class="stat-label">GitHub Repositories</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects -->
+        <section class="featured-section">
+            <div class="container">
+                <h2 style="font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 1rem; color: var(--text-dark);">Featured Projects</h2>
+                <p style="text-align: center; color: var(--text-light); margin-bottom: 3rem;">가장 임팩트 있었던 대표 프로젝트들</p>
+                
+                <div class="featured-grid">
+                    <div class="featured-card">
+                        <div class="featured-header research">
+                            <div class="featured-badge">Featured</div>
+                            <div class="featured-icon">🕸️</div>
+                        </div>
+                        <div class="featured-content">
+                            <h3 class="featured-title">Graph Neural Networks Research</h3>
+                            <p class="featured-description">
+                                [GNN 연구 프로젝트에 대한 상세한 설명을 여기에 작성하세요. 
+                                연구 목적, 방법론, 주요 발견사항, 임팩트 등을 포함]
+                            </p>
+                            <div class="featured-stats">
+                                <div class="featured-stat">
+                                    <span class="featured-stat-number">[성과1]</span>
+                                    <span class="featured-stat-label">[지표1]</span>
+                                </div>
+                                <div class="featured-stat">
+                                    <span class="featured-stat-number">[성과2]</span>
+                                    <span class="featured-stat-label">[지표2]</span>
+                                </div>
+                                <div class="featured-stat">
+                                    <span class="featured-stat-number">[성과3]</span>
+                                    <span class="featured-stat-label">[지표3]</span>
+                                </div>
+                            </div>
+                            <a href="projects/gnn.html" class="project-link">자세히 보기 →</a>
+                        </div>
+                    </div>
+
+                    <div class="featured-card">
+                        <div class="featured-header engineering">
+                            <div class="featured-badge">Engineering</div>
+                            <div class="featured-icon">🎛️</div>
+                        </div>
+                        <div class="featured-content">
+                            <h3 class="featured-title">AGC System Development</h3>
+                            <p class="featured-description">
+                                [AGC 시스템 개발 프로젝트에 대한 상세한 설명을 여기에 작성하세요. 
+                                시스템 구조, 핵심 기술, 성능 개선 결과 등을 포함]
+                            </p>
+                            <div class="featured-stats">
+                                <div class="featured-stat">
+                                    <span class="featured-stat-number">[성과1]</span>
+                                    <span class="featured-stat-label">[지표1]</span>
+                                </div>
+                                <div class="featured-stat">
+                                    <span class="featured-stat-number">[성과2]</span>
+                                    <span class="featured-stat-label">[지표2]</span>
+                                </div>
+                                <div class="featured-stat">
+                                    <span class="featured-stat-number">[성과3]</span>
+                                    <span class="featured-stat-label">[지표3]</span>
+                                </div>
+                            </div>
+                            <a href="projects/agc.html" class="project-link">자세히 보기 →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- All Projects -->
+        <section class="projects-section section">
+            <div class="container">
+                <h2 style="font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 3rem; color: var(--text-dark);">All Projects</h2>
+                
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Project 1: GNN -->
+                    <div class="project-card" data-category="research">
+                        <div class="project-header research">
+                            <div class="project-status">Completed</div>
+                            <div class="project-icon">🕸️</div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-meta">
+                                <span class="project-category">Research</span>
+                                <span class="project-date">[기간]</span>
+                            </div>
+                            <h3 class="project-title">Graph Neural Networks</h3>
+                            <p class="project-description">
+                                [GNN 프로젝트 요약 설명]
+                            </p>
+                            <div class="project-highlights">
+                                <h5>🎯 Key Achievement</h5>
+                                <p>[주요 성과를 여기에 작성]</p>
+                            </div>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">PyTorch</span>
+                                <span class="tag">Graph Theory</span>
+                                <span class="tag">Deep Learning</span>
+                            </div>
+                            <div class="project-footer">
+                                <a href="projects/gnn.html" class="project-link">자세히 보기 →</a>
+                                <div class="project-duration">⏱️ [기간]</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: AGC -->
+                    <div class="project-card" data-category="engineering">
+                        <div class="project-header engineering">
+                            <div class="project-status">Completed</div>
+                            <div class="project-icon">🎛️</div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-meta">
+                                <span class="project-category">Engineering</span>
+                                <span class="project-date">[기간]</span>
+                            </div>
+                            <h3 class="project-title">AGC System</h3>
+                            <p class="project-description">
+                                [AGC 프로젝트 요약 설명]
+                            </p>
+                            <div class="project-highlights">
+                                <h5>🎯 Key Achievement</h5>
+                                <p>[주요 성과를 여기에 작성]</p>
+                            </div>
+                            <div class="project-tags">
+                                <span class="tag">C++</span>
+                                <span class="tag">Signal Processing</span>
+                                <span class="tag">Real-time</span>
+                                <span class="tag">Audio</span>
+                            </div>
+                            <div class="project-footer">
+                                <a href="projects/agc.html" class="project-link">자세히 보기 →</a>
+                                <div class="project-duration">⏱️ [기간]</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Epoxy -->
+                    <div class="project-card" data-category="analysis">
+                        <div class="project-header analysis">
+                            <div class="project-status">Completed</div>
+                            <div class="project-icon">🧪</div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-meta">
+                                <span class="project-category">Data Analysis</span>
+                                <span class="project-date">[기간]</span>
+                            </div>
+                            <h3 class="project-title">Epoxy Materials Research</h3>
+                            <p class="project-description">
+                                [Epoxy 프로젝트 요약 설명]
+                            </p>
+                            <div class="project-highlights">
+                                <h5>🎯 Key Achievement</h5>
+                                <p>[주요 성과를 여기에 작성]</p>
+                            </div>
+                            <div class="project-tags">
+                                <span class="tag">Materials Science</span>
+                                <span class="tag">Data Analysis</span>
+                                <span class="tag">Research</span>
+                                <span class="tag">Statistics</span>
+                            </div>
+                            <div class="project-footer">
+                                <a href="projects/epoxy.html" class="project-link">자세히 보기 →</a>
+                                <div class="project-duration">⏱️ [기간]</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: DAB -->
+                    <div class="project-card" data-category="engineering">
+                        <div class="project-header engineering">
+                            <div class="project-status">Completed</div>
+                            <div class="project-icon">📡</div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-meta">
+                                <span class="project-category">Engineering</span>
+                                <span class="project-date">[기간]</span>
+                            </div>
+                            <h3 class="project-title">DAB Broadcasting System</h3>
+                            <p class="project-description">
+                                [DAB 프로젝트 요약 설명]
+                            </p>
+                            <div class="project-highlights">
+                                <h5>🎯 Key Achievement</h5>
+                                <p>[주요 성과를 여기에 작성]</p>
+                            </div>
+                            <div class="project-tags">
+                                <span class="tag">Digital Broadcasting</span>
+                                <span class="tag">RF</span>
+                                <span class="tag">System Design</span>
+                                <span class="tag">Wireless</span>
+                            </div>
+                            <div class="project-footer">
+                                <a href="projects/dab.html" class="project-link">자세히 보기 →</a>
+                                <div class="project-duration">⏱️ [기간]</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact CTA -->
+        <section class="contact-cta">
+            <div class="container">
+                <h2>새로운 프로젝트를 함께 시작해보세요</h2>
+                <p>[협업 제안이나 프로젝트 문의 관련 메시지]</p>
+                <a href="contact.html" class="cta-button">연락하기</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update active button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter cards
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('.nav');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (!nav.contains(event.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .featured-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
